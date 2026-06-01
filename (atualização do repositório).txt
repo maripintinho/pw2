@@ -1,0 +1,23 @@
+(atualização do repositório)
+1- entrar no repositório (pw2-etecregistro)
+2- abrir o git bash
+3- inserir comando git pull
+4- ir para repositório no GitHub
+
+1- criar repositório para novo site (?)
+2 - dar o nome do repositório
+3- deixar visibilidade pública e Add README ligado
+clonar para repositório local
+4- área de trabalho, botão direiro, open git bash
+5- inserir código git clone e o link do repositório do GitHub
+a pasta devera aparecer na área de trabalho
+6- renomear arquivo html como "index.html"
+7- copiar e colar os arquivos para a pasta (html, css, imagens)
+9- conferir site (css, imagens)
+9- abrir git bash
+10- inserir git add .
+11- inserir git commit -m "Hospedagem do site"
+12- inserir git push
+13- conferir arquivos no repositório remoto
+deixar repositório remoto online
+14- repositório/setting/pages(lado esquerdo)/Branch/none-main save

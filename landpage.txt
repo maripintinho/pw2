@@ -1,0 +1,19 @@
+<header>
+   //icons ou informações
+</header>
+<body>
+   <navbar>
+   </navbar>
+   <setcion>
+   //hero section - chamativo
+     - botão Call to Action
+   </section>
+   <section> de produtos ou serviços
+    outras seções</section>
+
+   <section> seção de depoimentos, avaliações</section> //posição tanto faz
+   <section> seção de sobre
+    quem somos, integrantes
+   </section>
+
+   <footer> Rodapé </footer>

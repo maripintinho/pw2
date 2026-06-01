@@ -1,0 +1,9 @@
+Tópicos da aula 04
+- esquemas de posicionamento (static, relative, absolute, fixed e sticky)
+- display
+- layout flexbox
+
+Esquemas de posicionamento
+Static (Padrão): O posicionamento estático é o comportamento natural. Propriedades: top, right, bottom, left não têm, efeito.
+
+Realative: O elemento mantém seu espaço original no fluxo, mas pode ser deslocado visualmente usando top, right, bottom, left. Outros elementos não são afetados
