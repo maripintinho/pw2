@@ -1,0 +1,6 @@
+enviar para o GitHub
+- abrir git bash no repositório que deseja enviar
+- inserir comandos:
+git add .
+git commit -m 'mensagem'
+git push

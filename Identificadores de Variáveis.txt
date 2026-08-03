@@ -1,0 +1,14 @@
+Identificadores de Variáveis
+- Identificadores podem começar com letras, $ ou _
+- Não podem começar com números;
+- É possível usar letras ou números;
+- É possível usar acentos;
+
+Variáveis
+De forma simplificada variáveis podem receber números ou caracteres (string).
+- Variáveis do tipo string podem ser declaradas tanto com "...", '...' ou `...`
+- Para definir variáveis podem usar var let ou const
+
+var salario =1500 -> permite reatribuição, permite redeclaração
+let -> permite reatribuição, não permite redeclaração
+const -> não permite reatribuição nem redeclaração
