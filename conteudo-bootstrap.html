@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia de Bootstrap 5 — Consulta para prova</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+:root{--ink:#172033;--muted:#64748b;--line:#e2e8f0;--soft:#f5f7fb;--accent:#5b5bd6}
+body{color:var(--ink);background:#f8fafc;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.sidebar{position:sticky;top:1rem;max-height:calc(100vh - 2rem);overflow:auto}
+.sidebar a{display:block;padding:.42rem .65rem;color:#475569;text-decoration:none;border-radius:.5rem;font-size:.92rem}
+.sidebar a:hover,.sidebar a.active{background:#eef2ff;color:#3730a3}
+main{min-width:0}
+.hero{background:linear-gradient(120deg,#1e293b,#3730a3);color:white;border-radius:1.25rem;padding:2.2rem}
+.topic{background:white;border:1px solid var(--line);border-radius:1rem;padding:1.4rem;margin-bottom:1.2rem;scroll-margin-top:1rem}
+.topic h2{font-size:1.35rem;font-weight:750;margin-bottom:.8rem}
+.topic h3{font-size:1rem;font-weight:700;margin-top:1.2rem}
+.lead-small{color:var(--muted);font-size:.95rem}
+pre{background:#101827;color:#e5edf9;border-radius:.75rem;padding:1rem;overflow:auto;font-size:.84rem;line-height:1.55;margin:.7rem 0}
+code{color:#b42318}
+pre code{color:inherit}
+.table{font-size:.92rem}
+.pill{display:inline-block;background:#eef2ff;color:#3730a3;border-radius:99px;padding:.2rem .6rem;font-size:.78rem;font-weight:650}
+.callout{background:#f1f5f9;border-left:4px solid #64748b;padding:.8rem 1rem;border-radius:.35rem;margin:.8rem 0}
+.searchbox{max-width:440px}
+.demo-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:4px}
+.demo-grid span{background:#dbeafe;color:#1e40af;text-align:center;padding:.5rem 0;border-radius:4px;font-size:.8rem}
+@media(max-width:991px){.sidebar{position:static;max-height:none}.hero{padding:1.4rem}}
+@media print{body{background:white}.sidebar,.searchbox,.no-print{display:none!important}.topic{break-inside:avoid;border:1px solid #bbb;box-shadow:none}.hero{background:#e5e7eb!important;color:#111!important}}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+ <div class="container-fluid px-4">
+  <a class="navbar-brand fw-bold" href="#">Bootstrap 5 <span class="text-info">| Guia de consulta</span></a>
+  <span class="navbar-text text-light d-none d-md-inline">HTML · CSS · Componentes · JavaScript</span>
+ </div>
+</nav>
+<div class="container-fluid px-lg-4 py-4">
+ <div class="row g-4">
+  <aside class="col-lg-3 col-xl-2 no-print">
+   <div class="sidebar bg-white border rounded-4 p-3">
+    <div class="fw-bold mb-2">Navegação</div>
+    <input id="search" class="form-control form-control-sm mb-3 searchbox" placeholder="Buscar assunto ou classe...">
+    <nav id="navlinks">
+     <a href="#inicio">Visão geral</a><a href="#estrutura">1. Estrutura inicial</a><a href="#grid">2. Grid e responsividade</a>
+     <a href="#flex">3. Flexbox e alinhamento</a><a href="#spacing">4. Margens e padding</a><a href="#display">5. Display e dimensões</a>
+     <a href="#cores">6. Cores e tipografia</a><a href="#navbar">7. Navbar</a><a href="#botoes">8. Botões</a>
+     <a href="#cards">9. Cards</a><a href="#carousel">10. Carrossel</a><a href="#alert">11. Alertas e badges</a>
+     <a href="#tabelas">12. Tabelas</a><a href="#forms">13. Formulários</a><a href="#modal">14. Modal</a>
+     <a href="#accordion">15. Accordion</a><a href="#progress">16. Progress bar</a><a href="#imagens">17. Imagens</a>
+     <a href="#js">18. JavaScript</a><a href="#data">19. Atributos data-bs</a><a href="#erros">20. Erros comuns</a>
+     <a href="#resumo">Resumo para prova</a>
+    </nav>
+   </div>
+  </aside>
+  <main class="col-lg-9 col-xl-10">
+   <header class="hero mb-4" id="inicio">
+    <span class="pill">MATERIAL DE ESTUDO</span>
+    <h1 class="display-5 fw-bold mt-3">Bootstrap 5: guia completo de consulta</h1>
+    <p class="lead mb-3">Um manual prático para reconhecer classes, montar componentes, adaptar layouts e entender as interações que podem aparecer na prova.</p>
+    <div class="d-flex flex-wrap gap-2">
+     <span class="badge text-bg-light">Exemplos de código</span><span class="badge text-bg-light">Tabelas de classes</span><span class="badge text-bg-light">Erros frequentes</span>
+    </div>
+   </header>
+   <div class="alert alert-info"><strong>Como usar:</strong> procure uma classe na busca, consulte o exemplo e adapte os nomes, IDs e conteúdos ao enunciado. Os exemplos usam Bootstrap 5.3.</div>
+
+   <section class="topic" id="estrutura">
+    <h2>1. Estrutura inicial do HTML</h2>
+    <p class="lead-small">Todo documento começa com a estrutura HTML. O CSS do Bootstrap estiliza os elementos; o JavaScript habilita componentes interativos como modal, navbar recolhível e carrossel.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Minha página&lt;/title&gt;
+
+  &lt;!-- Bootstrap CSS --&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1 class="text-primary"&gt;Olá, mundo!&lt;/h1&gt;
+
+  &lt;!-- Bootstrap JS: antes de fechar o body --&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <div class="callout"><strong>Não confunda:</strong> CSS = aparência; JavaScript = comportamento; <code>viewport</code> = adaptação a telas diferentes. O arquivo <code>bootstrap.bundle.min.js</code> já inclui o Popper.</div>
+   </section>
+
+   <section class="topic" id="grid">
+    <h2>2. Sistema de grid e responsividade</h2>
+    <p>O grid do Bootstrap divide a linha em 12 colunas. Normalmente, a estrutura é <code>container → row → col</code>.</p>
+    <div class="demo-grid mb-2"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+    <p class="lead-small">Exemplo: duas colunas de metade da largura cada.</p>
+<pre><code>&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-md-6"&gt;Coluna 1&lt;/div&gt;
+    &lt;div class="col-md-6"&gt;Coluna 2&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="table-responsive"><table class="table table-sm table-striped"><thead><tr><th>Classe</th><th>O que faz</th></tr></thead><tbody>
+    <tr><td><code>container</code></td><td>Conteúdo centralizado com largura responsiva.</td></tr><tr><td><code>container-fluid</code></td><td>Ocupa toda a largura disponível.</td></tr>
+    <tr><td><code>row</code></td><td>Cria uma linha do grid.</td></tr><tr><td><code>col</code></td><td>Coluna automática.</td></tr>
+    <tr><td><code>col-6</code></td><td>6 de 12 colunas em qualquer tamanho de tela.</td></tr><tr><td><code>col-md-6</code></td><td>6 colunas a partir do breakpoint md; abaixo disso, ocupa a largura toda.</td></tr>
+    <tr><td><code>col-lg-4</code></td><td>4 colunas a partir de lg.</td></tr><tr><td><code>g-3</code></td><td>Espaçamento entre colunas e linhas.</td></tr><tr><td><code>g-0</code></td><td>Remove o espaçamento do grid.</td></tr>
+    </tbody></table></div>
+    <h3>Breakpoints</h3>
+    <div class="table-responsive"><table class="table table-sm"><thead><tr><th>Prefixo</th><th>Largura mínima</th><th>Uso típico</th></tr></thead><tbody>
+    <tr><td><code>sm</code></td><td>576 px</td><td>Celulares grandes</td></tr><tr><td><code>md</code></td><td>768 px</td><td>Tablets</td></tr><tr><td><code>lg</code></td><td>992 px</td><td>Notebooks e desktops</td></tr><tr><td><code>xl</code></td><td>1200 px</td><td>Telas grandes</td></tr><tr><td><code>xxl</code></td><td>1400 px</td><td>Telas muito grandes</td></tr></tbody></table></div>
+<pre><code>&lt;!-- Celular: largura inteira; md: metade; lg: um terço --&gt;
+&lt;div class="col-12 col-md-6 col-lg-4"&gt;Conteúdo&lt;/div&gt;</code></pre>
+    <div class="callout">A soma das colunas de uma linha costuma ser 12. Ex.: três cards com <code>col-md-4</code> (4 + 4 + 4 = 12).</div>
+   </section>
+
+   <section class="topic" id="flex">
+    <h2>3. Flexbox e alinhamento</h2>
+    <div class="table-responsive"><table class="table table-sm table-striped"><thead><tr><th>Classe</th><th>Função</th></tr></thead><tbody>
+    <tr><td><code>d-flex</code></td><td>Ativa Flexbox.</td></tr><tr><td><code>flex-row</code></td><td>Organiza em linha.</td></tr><tr><td><code>flex-column</code></td><td>Organiza em coluna.</td></tr>
+    <tr><td><code>flex-wrap</code></td><td>Permite quebra para outra linha.</td></tr><tr><td><code>justify-content-start</code></td><td>Distribui no início do eixo principal.</td></tr>
+    <tr><td><code>justify-content-center</code></td><td>Centraliza no eixo principal.</td></tr><tr><td><code>justify-content-end</code></td><td>Alinha ao final do eixo principal.</td></tr>
+    <tr><td><code>justify-content-between</code></td><td>Espaço entre os elementos.</td></tr><tr><td><code>justify-content-around</code></td><td>Espaço igual em ambos os lados de cada item.</td></tr>
+    <tr><td><code>align-items-start</code></td><td>Alinha no início do eixo transversal.</td></tr><tr><td><code>align-items-center</code></td><td>Centraliza no eixo transversal.</td></tr><tr><td><code>align-items-end</code></td><td>Alinha no final do eixo transversal.</td></tr>
+    </tbody></table></div>
+<pre><code>&lt;div class="d-flex justify-content-between align-items-center"&gt;
+  &lt;h2&gt;Título&lt;/h2&gt;
+  &lt;button class="btn btn-primary"&gt;Entrar&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+    <p class="lead-small">Com <code>justify-content</code> você distribui no eixo principal; com <code>align-items</code>, alinha no eixo transversal.</p>
+   </section>
+
+   <section class="topic" id="spacing">
+    <h2>4. Margens e espaçamento interno</h2>
+    <p>O padrão é <code>{propriedade}{direção}-{tamanho}</code>.</p>
+    <p><strong>Propriedade:</strong> <code>m</code> = margin (fora); <code>p</code> = padding (dentro).</p>
+    <p><strong>Direção:</strong> <code>t</code> = topo; <code>b</code> = baixo; <code>s</code> = início; <code>e</code> = final; <code>x</code> = horizontal; <code>y</code> = vertical. Sem direção, aplica em todos os lados.</p>
+    <div class="table-responsive"><table class="table table-sm table-striped"><thead><tr><th>Classe</th><th>Significado</th></tr></thead><tbody>
+    <tr><td><code>mt-3</code></td><td>Margem superior.</td></tr><tr><td><code>mb-4</code></td><td>Margem inferior.</td></tr><tr><td><code>ms-2</code></td><td>Margem no início horizontal (esquerda em idiomas LTR, como o português; direita em RTL).</td></tr><tr><td><code>me-2</code></td><td>Margem no final.</td></tr>
+    <tr><td><code>mx-auto</code></td><td>Margens horizontais automáticas; útil para centralizar elemento com largura definida.</td></tr><tr><td><code>my-5</code></td><td>Margens verticais.</td></tr>
+    <tr><td><code>p-3</code></td><td>Padding em todos os lados.</td></tr><tr><td><code>px-4</code></td><td>Padding horizontal.</td></tr><tr><td><code>py-2</code></td><td>Padding vertical.</td></tr><tr><td><code>pt-3</code> / <code>pb-3</code></td><td>Padding superior / inferior.</td></tr>
+    </tbody></table></div>
+    <p class="lead-small">Escala padrão: 0 = 0; 1 = 0,25rem; 2 = 0,5rem; 3 = 1rem; 4 = 1,5rem; 5 = 3rem. O valor em pixels depende do tamanho-base da fonte.</p>
+<pre><code>&lt;section class="container mt-5 p-4"&gt;
+  &lt;h2 class="mb-3"&gt;Título&lt;/h2&gt;
+  &lt;p class="px-2"&gt;Texto com padding horizontal.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+   </section>
+
+   <section class="topic" id="display">
+    <h2>5. Display, visibilidade e dimensões</h2>
+    <div class="table-responsive"><table class="table table-sm table-striped"><thead><tr><th>Classe</th><th>Função</th></tr></thead><tbody>
+    <tr><td><code>d-none</code></td><td>Esconde o elemento.</td></tr><tr><td><code>d-block</code></td><td>Exibe como bloco.</td></tr><tr><td><code>d-inline</code></td><td>Exibe em linha.</td></tr><tr><td><code>d-inline-block</code></td><td>Em linha, mas aceita dimensões de bloco.</td></tr><tr><td><code>d-flex</code></td><td>Ativa Flexbox.</td></tr><tr><td><code>d-grid</code></td><td>Ativa CSS Grid.</td></tr>
+    <tr><td><code>d-none d-md-block</code></td><td>Esconde abaixo de md e mostra a partir de md.</td></tr><tr><td><code>d-block d-md-none</code></td><td>Mostra abaixo de md e esconde a partir de md.</td></tr>
+    <tr><td><code>w-25</code> / <code>w-50</code> / <code>w-75</code> / <code>w-100</code></td><td>Largura em porcentagem.</td></tr><tr><td><code>h-25</code> / <code>h-50</code> / <code>h-75</code> / <code>h-100</code></td><td>Altura em porcentagem do contêiner.</td></tr><tr><td><code>mw-100</code></td><td>Largura máxima de 100%.</td></tr><tr><td><code>vh-100</code></td><td>Altura igual a 100% da altura da viewport.</td></tr>
+    </tbody></table></div>
+   </section>
+
+   <section class="topic" id="cores">
+    <h2>6. Cores, fundos e tipografia</h2>
+<pre><code>&lt;!-- Cores de texto --&gt;
+&lt;p class="text-primary"&gt;Azul&lt;/p&gt;
+&lt;p class="text-success"&gt;Verde&lt;/p&gt;
+&lt;p class="text-danger"&gt;Vermelho&lt;/p&gt;
+&lt;p class="text-warning"&gt;Amarelo&lt;/p&gt;
+&lt;p class="text-info"&gt;Informação&lt;/p&gt;
+&lt;p class="text-dark"&gt;Escuro&lt;/p&gt;
+&lt;p class="text-body-secondary"&gt;Texto secundário&lt;/p&gt;
+
+&lt;!-- Fundos --&gt;
+&lt;div class="bg-primary text-white"&gt;Fundo azul&lt;/div&gt;
+&lt;div class="bg-success text-white"&gt;Fundo verde&lt;/div&gt;
+&lt;div class="bg-light text-dark"&gt;Fundo claro&lt;/div&gt;
+&lt;div class="bg-dark text-white"&gt;Fundo escuro&lt;/div&gt;
+
+&lt;!-- Alinhamento e tipografia --&gt;
+&lt;p class="text-start"&gt;Esquerda&lt;/p&gt;
+&lt;p class="text-center"&gt;Centro&lt;/p&gt;
+&lt;p class="text-end"&gt;Direita&lt;/p&gt;
+&lt;p class="fs-1 fw-bold"&gt;Grande e negrito&lt;/p&gt;
+&lt;p class="fst-italic"&gt;Itálico&lt;/p&gt;</code></pre>
+    <div class="table-responsive"><table class="table table-sm"><thead><tr><th>Classe</th><th>Função</th></tr></thead><tbody>
+    <tr><td><code>text-center</code></td><td>Centraliza texto.</td></tr><tr><td><code>text-start</code> / <code>text-end</code></td><td>Alinha no início / final.</td></tr><tr><td><code>fs-1</code> a <code>fs-6</code></td><td>Tamanho da fonte (1 maior, 6 menor).</td></tr><tr><td><code>fw-bold</code></td><td>Negrito.</td></tr><tr><td><code>fw-normal</code></td><td>Peso normal.</td></tr><tr><td><code>fst-italic</code></td><td>Itálico.</td></tr><tr><td><code>text-uppercase</code></td><td>Maiúsculas.</td></tr><tr><td><code>text-lowercase</code></td><td>Minúsculas.</td></tr><tr><td><code>text-decoration-none</code></td><td>Remove decoração, como sublinhado de link.</td></tr>
+    </tbody></table></div>
+   </section>
+
+   <section class="topic" id="navbar">
+    <h2>7. Navbar — barra de navegação</h2>
+<pre><code>&lt;nav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt;
+  &lt;div class="container"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;Minha marca&lt;/a&gt;
+
+    &lt;button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#menu"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+
+    &lt;div class="collapse navbar-collapse" id="menu"&gt;
+      &lt;ul class="navbar-nav ms-auto"&gt;
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link active" href="#"&gt;Início&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link" href="#sobre"&gt;Sobre&lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+    <p><code>navbar-expand-lg</code> mantém os links expandidos a partir de telas grandes; abaixo do breakpoint lg, o menu fica recolhido e pode ser aberto pelo botão. O botão e o conteúdo precisam apontar para o mesmo ID.</p>
+    <div class="callout"><strong>Erro comum:</strong> escrever <code>navbar-expand-1g</code> com o número 1. O correto é <code>navbar-expand-lg</code> com a letra L minúscula.</div>
+   </section>
+
+   <section class="topic" id="botoes">
+    <h2>8. Botões</h2>
+<pre><code>&lt;button class="btn btn-primary"&gt;Primário&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Secundário&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Sucesso&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Perigo&lt;/button&gt;
+&lt;button class="btn btn-warning"&gt;Aviso&lt;/button&gt;
+&lt;button class="btn btn-info"&gt;Informação&lt;/button&gt;
+&lt;button class="btn btn-dark"&gt;Escuro&lt;/button&gt;
+&lt;button class="btn btn-light"&gt;Claro&lt;/button&gt;
+&lt;button class="btn btn-outline-primary"&gt;Contorno&lt;/button&gt;
+
+&lt;button class="btn btn-primary btn-lg"&gt;Grande&lt;/button&gt;
+&lt;button class="btn btn-primary btn-sm"&gt;Pequeno&lt;/button&gt;
+&lt;button class="btn btn-primary w-100"&gt;Largura total&lt;/button&gt;</code></pre>
+    <p>Para um botão desativado, use o atributo HTML <code>disabled</code>. <code>btn</code> é a classe-base; a segunda classe define cor/estilo.</p>
+   </section>
+
+   <section class="topic" id="cards">
+    <h2>9. Cards</h2>
+<pre><code>&lt;div class="card h-100"&gt;
+  &lt;img src="imagem.jpg" class="card-img-top" alt="Descrição"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Título do card&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Descrição do conteúdo.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Saiba mais&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer"&gt;Informação adicional&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p><code>card</code> é o contêiner; <code>card-img-top</code> posiciona a imagem no topo; <code>card-body</code> envolve o conteúdo; <code>card-title</code> e <code>card-text</code> formatam título e texto; <code>card-footer</code> cria o rodapé. Use <code>h-100</code> para cards com altura igual dentro da linha.</p>
+    <h3>Três cards em uma linha</h3>
+<pre><code>&lt;div class="row g-3"&gt;
+  &lt;div class="col-md-4"&gt;...card 1...&lt;/div&gt;
+  &lt;div class="col-md-4"&gt;...card 2...&lt;/div&gt;
+  &lt;div class="col-md-4"&gt;...card 3...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+   </section>
+
+   <section class="topic" id="carousel">
+    <h2>10. Carrossel</h2>
+<pre><code>&lt;div id="meuCarousel" class="carousel slide" data-bs-ride="carousel"&gt;
+  &lt;div class="carousel-indicators"&gt;
+    &lt;button type="button" data-bs-target="#meuCarousel"
+      data-bs-slide-to="0" class="active" aria-current="true"&gt;&lt;/button&gt;
+    &lt;button type="button" data-bs-target="#meuCarousel"
+      data-bs-slide-to="1"&gt;&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class="carousel-inner"&gt;
+    &lt;div class="carousel-item active"&gt;
+      &lt;img src="imagem1.jpg" class="d-block w-100" alt="Imagem 1"&gt;
+    &lt;/div&gt;
+    &lt;div class="carousel-item"&gt;
+      &lt;img src="imagem2.jpg" class="d-block w-100" alt="Imagem 2"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;button class="carousel-control-prev" type="button"
+    data-bs-target="#meuCarousel" data-bs-slide="prev"&gt;
+    &lt;span class="carousel-control-prev-icon"&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="carousel-control-next" type="button"
+    data-bs-target="#meuCarousel" data-bs-slide="next"&gt;
+    &lt;span class="carousel-control-next-icon"&gt;&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+    <p>O primeiro slide deve ter <code>active</code>. Cada indicador usa <code>data-bs-slide-to</code> com índice começando em zero. Os controles usam <code>prev</code> e <code>next</code>.</p>
+    <div class="callout">Se as imagens tiverem proporções diferentes, podem parecer ter alturas diferentes. Para padronizar: <code>class="d-block w-100"</code> com <code>style="height: 400px; object-fit: cover;"</code>. <code>cover</code> preenche o espaço e pode cortar um pouco da imagem sem distorcê-la.</div>
+   </section>
+
+   <section class="topic" id="alert">
+    <h2>11. Alertas, badges e mensagens</h2>
+<pre><code>&lt;div class="alert alert-success" role="alert"&gt;Tudo certo!&lt;/div&gt;
+&lt;div class="alert alert-danger" role="alert"&gt;Ocorreu um erro.&lt;/div&gt;
+&lt;div class="alert alert-warning" role="alert"&gt;Atenção!&lt;/div&gt;
+&lt;div class="alert alert-info" role="alert"&gt;Informação.&lt;/div&gt;
+
+&lt;!-- Alerta que pode ser fechado --&gt;
+&lt;div class="alert alert-warning alert-dismissible fade show" role="alert"&gt;
+  Confira os dados.
+  &lt;button type="button" class="btn-close" data-bs-dismiss="alert"&gt;&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Badge --&gt;
+&lt;span class="badge text-bg-danger"&gt;5 novidades&lt;/span&gt;</code></pre>
+    <p><code>alert</code> cria o componente; <code>alert-success</code>, <code>alert-danger</code>, <code>alert-warning</code> e <code>alert-info</code> definem a variação. <code>alert-dismissible</code> permite fechar; <code>data-bs-dismiss="alert"</code> faz o botão dispensar o alerta.</p>
+   </section>
+
+   <section class="topic" id="tabelas">
+    <h2>12. Tabelas</h2>
+<pre><code>&lt;div class="table-responsive"&gt;
+  &lt;table class="table table-striped table-bordered table-hover"&gt;
+    &lt;thead class="table-dark"&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Nome&lt;/th&gt;
+        &lt;th&gt;Curso&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;Ana&lt;/td&gt;
+        &lt;td&gt;HTML&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+    <div class="table-responsive"><table class="table table-sm table-striped"><thead><tr><th>Classe</th><th>Função</th></tr></thead><tbody>
+    <tr><td><code>table</code></td><td>Estiliza a tabela.</td></tr><tr><td><code>table-striped</code></td><td>Alterna a aparência das linhas.</td></tr><tr><td><code>table-bordered</code></td><td>Adiciona bordas.</td></tr><tr><td><code>table-hover</code></td><td>Destaca a linha ao passar o mouse.</td></tr><tr><td><code>table-dark</code></td><td>Estilo escuro.</td></tr><tr><td><code>table-responsive</code></td><td>Permite rolagem horizontal em telas estreitas.</td></tr><tr><td><code>table-sm</code></td><td>Deixa a tabela mais compacta.</td></tr>
+    </tbody></table></div>
+   </section>
+
+   <section class="topic" id="forms">
+    <h2>13. Formulários</h2>
+<pre><code>&lt;form&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="nome" class="form-label"&gt;Nome&lt;/label&gt;
+    &lt;input type="text" id="nome" class="form-control"
+      placeholder="Digite seu nome" required&gt;
+  &lt;/div&gt;
+
+  &lt;div class="mb-3"&gt;
+    &lt;label for="email" class="form-label"&gt;E-mail&lt;/label&gt;
+    &lt;input type="email" id="email" class="form-control"
+      placeholder="Digite seu e-mail" required&gt;
+  &lt;/div&gt;
+
+  &lt;div class="mb-3"&gt;
+    &lt;label for="curso" class="form-label"&gt;Curso&lt;/label&gt;
+    &lt;select id="curso" class="form-select"&gt;
+      &lt;option value=""&gt;Selecione&lt;/option&gt;
+      &lt;option&gt;HTML&lt;/option&gt;
+      &lt;option&gt;JavaScript&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;div class="mb-3"&gt;
+    &lt;label for="mensagem" class="form-label"&gt;Mensagem&lt;/label&gt;
+    &lt;textarea id="mensagem" class="form-control" rows="4"&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+
+  &lt;button type="submit" class="btn btn-primary"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    <h3>Checkbox e radio</h3>
+<pre><code>&lt;div class="form-check"&gt;
+  &lt;input class="form-check-input" type="checkbox" id="aceito"&gt;
+  &lt;label class="form-check-label" for="aceito"&gt;Aceito os termos&lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div class="form-check"&gt;
+  &lt;input class="form-check-input" type="radio" name="turno" id="manha"&gt;
+  &lt;label class="form-check-label" for="manha"&gt;Manhã&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="form-check"&gt;
+  &lt;input class="form-check-input" type="radio" name="turno" id="noite"&gt;
+  &lt;label class="form-check-label" for="noite"&gt;Noite&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+    <div class="table-responsive"><table class="table table-sm table-striped"><thead><tr><th>Classe/atributo</th><th>Função</th></tr></thead><tbody>
+    <tr><td><code>form-label</code></td><td>Estiliza o rótulo.</td></tr><tr><td><code>form-control</code></td><td>Estiliza input e textarea.</td></tr><tr><td><code>form-select</code></td><td>Estiliza lista de seleção.</td></tr><tr><td><code>form-check</code></td><td>Contêiner de checkbox/radio.</td></tr><tr><td><code>form-check-input</code></td><td>Estiliza a opção.</td></tr><tr><td><code>form-check-label</code></td><td>Estiliza o texto da opção.</td></tr>
+    <tr><td><code>required</code></td><td>Campo obrigatório.</td></tr><tr><td><code>disabled</code></td><td>Desativa o campo.</td></tr><tr><td><code>readonly</code></td><td>Impede edição, mas mantém o campo utilizável para leitura.</td></tr><tr><td><code>placeholder</code></td><td>Texto de orientação.</td></tr><tr><td><code>min</code> / <code>max</code></td><td>Valores mínimo e máximo para tipos compatíveis.</td></tr>
+    </tbody></table></div>
+    <div class="callout">Em um grupo de radio, as opções precisam ter o mesmo <code>name</code> para que apenas uma seja selecionada. O <code>for</code> do label deve corresponder ao <code>id</code> do campo.</div>
+   </section>
+
+   <section class="topic" id="modal">
+    <h2>14. Modal</h2>
+    <p>Uma janela sobreposta ao conteúdo da página. O botão pode abrir o modal usando atributos Bootstrap ou JavaScript.</p>
+<pre><code>&lt;!-- Botão para abrir --&gt;
+&lt;button class="btn btn-primary" data-bs-toggle="modal"
+  data-bs-target="#meuModal"&gt;Abrir modal&lt;/button&gt;
+
+&lt;!-- Modal --&gt;
+&lt;div class="modal fade" id="meuModal" tabindex="-1"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h5 class="modal-title"&gt;Confirmação&lt;/h5&gt;
+        &lt;button type="button" class="btn-close"
+          data-bs-dismiss="modal"&gt;&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;Conteúdo do modal.&lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;button type="button" class="btn btn-secondary"
+          data-bs-dismiss="modal"&gt;Fechar&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p>Partes: <code>modal</code> (componente), <code>modal-dialog</code> (caixa), <code>modal-content</code> (conteúdo), <code>modal-header</code>, <code>modal-title</code>, <code>modal-body</code> e <code>modal-footer</code>.</p>
+   </section>
+
+   <section class="topic" id="accordion">
+    <h2>15. Accordion</h2>
+<pre><code>&lt;div class="accordion" id="perguntas"&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;h2 class="accordion-header"&gt;
+      &lt;button class="accordion-button" type="button"
+        data-bs-toggle="collapse" data-bs-target="#resposta1"&gt;
+        Primeira pergunta
+      &lt;/button&gt;
+    &lt;/h2&gt;
+    &lt;div id="resposta1" class="accordion-collapse collapse show"
+      data-bs-parent="#perguntas"&gt;
+      &lt;div class="accordion-body"&gt;Resposta da pergunta.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p>O accordion organiza painéis que abrem e fecham. <code>show</code> faz o painel começar aberto. <code>data-bs-parent</code> pode fazer com que apenas um painel do grupo fique aberto por vez.</p>
+   </section>
+
+   <section class="topic" id="progress">
+    <h2>16. Progress bar e badges</h2>
+<pre><code>&lt;div class="progress" role="progressbar"
+  aria-label="Progresso" aria-valuenow="70"
+  aria-valuemin="0" aria-valuemax="100"&gt;
+  &lt;div class="progress-bar" style="width: 70%;"&gt;70%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;span class="badge text-bg-primary"&gt;Novo&lt;/span&gt;
+&lt;span class="badge text-bg-success"&gt;Concluído&lt;/span&gt;</code></pre>
+    <p><code>progress</code> é o contêiner da barra; <code>progress-bar</code> é o preenchimento. A largura inline indica o percentual. <code>badge</code> cria uma etiqueta pequena.</p>
+   </section>
+
+   <section class="topic" id="imagens">
+    <h2>17. Imagens</h2>
+<pre><code>&lt;img src="imagem.jpg" class="img-fluid" alt="Descrição"&gt;
+&lt;img src="imagem.jpg" class="rounded" alt="Bordas arredondadas"&gt;
+&lt;img src="imagem.jpg" class="rounded-circle" alt="Circular"&gt;
+&lt;img src="imagem.jpg" class="img-thumbnail" alt="Miniatura"&gt;</code></pre>
+    <p><code>img-fluid</code> limita a imagem à largura do contêiner e mantém a proporção. <code>rounded</code> arredonda bordas; <code>rounded-circle</code> aplica <code>border-radius: 50%</code> (vira círculo perfeito apenas em imagens quadradas 1:1; se for retangular, vira oval/elipse); <code>img-thumbnail</code> aplica aparência de miniatura.</p>
+   </section>
+
+   <section class="topic" id="js">
+    <h2>18. JavaScript básico usado com Bootstrap</h2>
+    <h3>Selecionar elementos</h3>
+<pre><code>const formulario = document.getElementById("meuFormulario");
+const botao = document.querySelector(".btn-primary");
+const campos = document.querySelectorAll(".form-control");</code></pre>
+    <p><code>getElementById</code> procura um ID; <code>querySelector</code> retorna o primeiro elemento que corresponde ao seletor CSS; <code>querySelectorAll</code> retorna todos os correspondentes.</p>
+    <h3>Evento de clique e envio</h3>
+<pre><code>botao.addEventListener("click", function() {
+  alert("Botão clicado!");
+});
+
+formulario.addEventListener("submit", function(evento) {
+  evento.preventDefault(); // impede o envio/recarregamento padrão
+  alert("Formulário enviado!");
+});</code></pre>
+    <h3>Limpar formulário</h3>
+<pre><code>formulario.reset();</code></pre>
+    <h3>Abrir e fechar modal pelo JavaScript</h3>
+<pre><code>const elementoModal = document.getElementById("meuModal");
+const modal = new bootstrap.Modal(elementoModal);
+
+modal.show(); // abre
+modal.hide(); // fecha</code></pre>
+<h3>Alterar conteúdo e estilo</h3>
+<pre><code>document.getElementById("titulo").textContent = "Novo título";
+document.getElementById("titulo").classList.add("text-danger"); // ou .style.color = "red"</code></pre>
+    <div class="callout"><strong>Ordem importante:</strong> carregue o Bootstrap JS antes do seu script que usa <code>bootstrap.Modal</code>. Colocar os scripts perto do fim do <code>body</code> é uma prática comum.</div>
+   </section>
+
+   <section class="topic" id="data">
+    <h2>19. Atributos data-bs-*</h2>
+    <div class="table-responsive"><table class="table table-sm table-striped"><thead><tr><th>Atributo</th><th>Uso</th></tr></thead><tbody>
+    <tr><td><code>data-bs-toggle="collapse"</code></td><td>Ativa abrir/fechar conteúdo recolhível.</td></tr>
+    <tr><td><code>data-bs-toggle="modal"</code></td><td>Abre modal.</td></tr><tr><td><code>data-bs-toggle="dropdown"</code></td><td>Abre menu dropdown.</td></tr>
+    <tr><td><code>data-bs-toggle="tooltip"</code></td><td>Identifica um tooltip; precisa ser inicializado por JavaScript.</td></tr>
+    <tr><td><code>data-bs-target="#id"</code></td><td>Aponta para o elemento de destino.</td></tr><tr><td><code>data-bs-dismiss="modal"</code></td><td>Fecha modal.</td></tr><tr><td><code>data-bs-dismiss="alert"</code></td><td>Fecha alerta.</td></tr>
+    <tr><td><code>data-bs-slide="next"</code></td><td>Avança carrossel.</td></tr><tr><td><code>data-bs-slide="prev"</code></td><td>Volta carrossel.</td></tr><tr><td><code>data-bs-ride="carousel"</code></td><td>Configura início automático do carrossel.</td></tr>
+    </tbody></table></div>
+    <h3>Dropdown — menu suspenso</h3>
+<pre><code>&lt;div class="dropdown"&gt;
+  &lt;button class="btn btn-secondary dropdown-toggle"
+    type="button" data-bs-toggle="dropdown"&gt;
+    Abrir opções
+  &lt;/button&gt;
+  &lt;ul class="dropdown-menu"&gt;
+    &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Opção 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Opção 2&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+   </section>
+
+   <section class="topic" id="erros">
+    <h2>20. Erros comuns e como conferir</h2>
+    <ul>
+     <li><strong>Classe digitada incorretamente:</strong> <code>navbar-expand-1g</code> não existe; use <code>navbar-expand-lg</code> (letra L).</li>
+     <li><strong>ID e destino diferentes:</strong> <code>data-bs-target="#menu"</code> exige um elemento com <code>id="menu"</code>.</li>
+     <li><strong>Esquecer o active no primeiro slide:</strong> o carrossel precisa de um item inicial visível.</li>
+     <li><strong>Esquecer o JavaScript:</strong> navbar recolhível, modal, carrossel e dropdown precisam do Bootstrap JS.</li>
+     <li><strong>Esquecer row ou container:</strong> o grid deve ser estruturado corretamente.</li>
+     <li><strong>Somar colunas errado:</strong> três colunas <code>col-md-4</code> ocupam 12; quatro colunas <code>col-md-4</code> passam para outra linha.</li>
+     <li><strong>Label sem associação:</strong> <code>for="email"</code> deve corresponder a <code>id="email"</code>.</li>
+     <li><strong>Radio com name diferente:</strong> opções que pertencem ao mesmo grupo precisam compartilhar o mesmo <code>name</code>.</li>
+     <li><strong>Usar classe errada no campo:</strong> inputs normalmente usam <code>form-control</code>; selects usam <code>form-select</code>.</li>
+     <li><strong>Imagem com tamanho desigual:</strong> <code>w-100</code> define largura, mas não padroniza altura. Para isso, use altura definida e <code>object-fit: cover</code>.</li>
+     <li><strong>Colocar script antes do Bootstrap:</strong> seu JavaScript pode tentar usar um componente antes de a biblioteca carregar.</li>
+    </ul>
+   </section>
+
+   <section class="topic" id="resumo">
+    <h2>Resumo rápido para revisar antes da prova</h2>
+    <div class="table-responsive"><table class="table table-sm table-bordered align-middle"><thead class="table-light"><tr><th>Se o enunciado pedir...</th><th>Procure por...</th></tr></thead><tbody>
+    <tr><td>Centralizar e limitar conteúdo</td><td><code>container</code></td></tr><tr><td>Ocupar toda a largura</td><td><code>container-fluid</code> ou <code>w-100</code>, conforme o caso</td></tr>
+    <tr><td>Criar linha e colunas</td><td><code>row</code> e <code>col-*</code></td></tr><tr><td>Espaço externo/interno</td><td><code>m*</code> / <code>p*</code></td></tr>
+    <tr><td>Alinhar com flexbox</td><td><code>d-flex</code>, <code>justify-content-*</code>, <code>align-items-*</code></td></tr><tr><td>Barra de navegação</td><td><code>navbar</code></td></tr>
+    <tr><td>Cartões</td><td><code>card</code>, <code>card-body</code></td></tr><tr><td>Imagens que deslizam</td><td><code>carousel</code></td></tr>
+    <tr><td>Mensagem colorida</td><td><code>alert</code></td></tr><tr><td>Tabela estilizada</td><td><code>table</code></td></tr>
+    <tr><td>Campo de entrada</td><td><code>form-control</code></td></tr><tr><td>Lista de seleção</td><td><code>form-select</code></td></tr>
+    <tr><td>Janela sobreposta</td><td><code>modal</code></td></tr><tr><td>Abrir/fechar componente</td><td><code>data-bs-toggle</code> / <code>data-bs-dismiss</code></td></tr>
+    <tr><td>Reagir a clique/envio</td><td><code>addEventListener</code></td></tr><tr><td>Impedir envio padrão</td><td><code>preventDefault()</code></td></tr>
+    </tbody></table></div>
+    <div class="alert alert-success mb-0"><strong>Estratégia:</strong> identifique primeiro o componente pedido, monte a estrutura HTML, confira as classes Bootstrap, associe corretamente IDs e atributos <code>data-bs-*</code> e verifique se o JavaScript está importado quando houver interação.</div>
+   </section>
+   <footer class="text-center text-secondary small py-4">Guia de estudo — Bootstrap 5.3 · Exemplos para consulta e adaptação</footer>
+  </main>
+ </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const search = document.getElementById('search');
+const sections = [...document.querySelectorAll('main .topic')];
+const links = [...document.querySelectorAll('#navlinks a')];
+search.addEventListener('input', () => {
+ const q = search.value.toLowerCase().trim();
+ sections.forEach(s => {
+  const match = !q || s.innerText.toLowerCase().includes(q);
+  s.style.display = match ? '' : 'none';
+ });
+ links.forEach(a => {
+  const target = document.querySelector(a.getAttribute('href'));
+  a.style.display = !q || (target && target.innerText.toLowerCase().includes(q)) ? '' : 'none';
+ });
+});
+</script>
+</body>
+</html>
+
+
